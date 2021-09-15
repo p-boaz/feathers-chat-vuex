@@ -76,22 +76,22 @@ export default {
 </script>
 
 <style scoped>
-main#chat {
+.main#chat {
   height: 100%;
 }
 
 /* Header */
-header.title-bar {
+.header.title-bar {
   padding: 10px 0;
   border-bottom: 1px solid #f1f1f1;
 }
 
-header.title-bar img.logo {
+.header.title-bar img.logo {
   width: 100%;
   max-width: 140px;
 }
 
-header.title-bar span.title {
+.header.title-bar span.title {
   color: #969696;
   font-weight: 100;
   text-transform: uppercase;
