@@ -1,39 +1,42 @@
 <template>
-  <main id="chat" class="flex flex-column">
-    <header class="title-bar flex flex-row flex-center">
-      <div class="title-wrapper block center-element">
-        <img
-          class="logo"
-          src="http://feathersjs.com/img/feathers-logo-wide.png"
-          alt="Feathers Logo"
-        />
-        <span class="title">Chat</span>
-      </div>
-    </header>
-    <div v-if="user" class="flex flex-row flex-1 clear">
-      <UserList :users="users" @logout="logout" />
+  <div id="main-body" class="leading-normal tracking-normal">
+    <div class="flex flex-wrap">
+      <Sidebar />
 
-      <MessageList :messages="messages" />
+      <div
+        id="main-content"
+        class="w-full bg-gray-100 pl-0 lg:pl-64 min-h-screen"
+        :class="sideBarOpen ? 'overlay' : ''"
+      >
+        <NavBar @logout="logout" />
+
+        <div class="p-6 bg-gray-100 mb-20">
+          <router-view />
+        </div>
+        <Footer />
+      </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Sidebar from './Sidebar'
+import NavBar from './NavBar'
+import Footer from './Footer'
 import { useFind } from 'feathers-vuex'
 import { computed } from '@vue/composition-api'
-import UserList from '../components/Users'
-import MessageList from '../components/Messages'
 
 export default {
-  name: 'Chat',
+  name: 'Dashboard',
   components: {
-    UserList,
-    MessageList
+    Sidebar,
+    NavBar,
+    Footer
   },
   setup(props, context) {
     const { Message, User } = context.root.$FeathersVuex.api
     const { $store } = context.root
-
     // Users
     const user = computed(() => $store.state.auth.user)
     const usersParams = computed(() => {
@@ -71,6 +74,9 @@ export default {
       messages,
       logout
     }
+  },
+  computed: {
+    ...mapState(['sideBarOpen'])
   }
 }
 </script>

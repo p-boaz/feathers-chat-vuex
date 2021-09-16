@@ -1,57 +1,74 @@
 <template>
   <main class="login container">
-    <div class="row">
-      <div class="col-12 col-6-tablet push-3-tablet text-center">
-        <h1 class="font-100">Welcome Back</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div
-        class="col-12 col-6-tablet push-3-tablet col-4-desktop push-4-desktop"
-      >
-        <div v-if="error" class="error">
-          {{ error.message }}
-          <a class="close" href="javascript://" @click.prevent="dismissError"
-            >dismiss</a
-          >
-        </div>
-
-        <form
-          class="form"
-          method="post"
-          @submit.prevent="onSubmit(email, password)"
+    <div class="min-h-screen bg-no-repeat bg-cover bg-center" style="">
+      <div class="flex justify-end">
+        <div
+          class="bg-white min-h-screen w-1/2 flex justify-center items-center"
         >
-          <fieldset>
-            <input
-              v-model="email"
-              class="block"
-              type="email"
-              name="email"
-              placeholder="email"
-            />
-          </fieldset>
-
-          <fieldset>
-            <input
-              v-model="password"
-              class="block"
-              type="password"
-              name="password"
-              placeholder="password"
-            />
-          </fieldset>
-
-          <button type="submit" class="button button-primary block login">
-            Login
-          </button>
-
-          <router-link
-            as="button"
-            :to="{ name: 'Home' }"
-            class="button button-secondary block"
-            >Back</router-link
-          >
-        </form>
+          <div>
+            <div v-if="error" class="error">
+              {{ error.message }}
+              <a
+                class="close"
+                href="javascript://"
+                @click.prevent="dismissError"
+                >dismiss</a
+              >
+            </div>
+            <form
+              class="form"
+              method="post"
+              @submit.prevent="onSubmit(email, password)"
+            >
+              <div>
+                <span class="text-sm text-gray-900">Welcome back</span>
+                <h1 class="text-2xl font-bold">Login to your account</h1>
+              </div>
+              <div class="my-3">
+                <label class="block text-md mb-2" for="email">Email</label>
+                <input
+                  v-model="email"
+                  class="px-4 w-full border-2 py-2 rounded-md text-sm outline-none"
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                />
+              </div>
+              <div class="mt-5">
+                <label class="block text-md mb-2" for="password"
+                  >Password</label
+                >
+                <input
+                  v-model="password"
+                  class="px-4 w-full border-2 py-2 rounded-md text-sm outline-none"
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                />
+              </div>
+              <div class="flex justify-between">
+                <button
+                  type="submit"
+                  class="mt-4 mb-3 w-full bg-green-500 hover:bg-green-400 text-white py-2 rounded-md transition duration-100"
+                >
+                  Login
+                </button>
+              </div>
+              <router-link
+                as="button"
+                :to="{ name: 'Home' }"
+                class="button button-secondary block"
+                >Back</router-link
+              >
+            </form>
+            <p class="mt-8">
+              Dont have an account?
+              <span class="cursor-pointer text-sm text-blue-600">
+                Join free today</span
+              >
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -59,20 +76,16 @@
 
 <script>
 import { ref } from '@vue/composition-api'
-
 export default {
   name: 'Login',
   setup(props, context) {
     const { $store } = context.root
-
     const email = ref('')
     const password = ref('')
-
     const error = ref(null)
     function dismissError() {
       error.value = null
     }
-
     function onSubmit(email, password) {
       $store
         .dispatch('auth/authenticate', { strategy: 'local', email, password })
@@ -88,7 +101,6 @@ export default {
           this.error = err
         })
     }
-
     return {
       email,
       password,

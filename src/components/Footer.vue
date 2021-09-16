@@ -1,9 +1,17 @@
 <template>
-  <footer
-    class="absolute bottom-0 bg-elucidator-50 text-elucidator-700 dark:text-dark-repulser-400 w-full p-7 dark:bg-gray-700"
-  >
-    <p class="text-center">&copy; {{ new Date().getFullYear() }} Graphletter</p>
-    <p class="text-center">Built with Vue 3 + Typescript + Vite</p>
-    <p class="text-center">Hosted on Netlify.</p>
-  </footer>
+  <div class="w-full border-t-2 px-8 py-6 lg:flex justify-between items-center">
+    <p class="mb-2 lg:mb-0">© Copyright 2020</p>
+
+    <div class="flex">
+      <a href="#" class="mr-6 hover:text-gray-900">Terms of Service</a>
+      <a href="#" class="mr-6 hover:text-gray-900">Privacy Policy</a>
+      <a href="#" class="hover:text-gray-900">About Us</a>
+    </div>
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'Footer'
+}
+</script>

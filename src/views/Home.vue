@@ -1,85 +1,103 @@
 <template>
-  <main class="home container">
-    <div class="row">
-      <div class="col-12 col-8-tablet push-2-tablet text-center">
-        <img
-          class="logo center-item"
-          src="http://feathersjs.com/img/feathers-logo-wide.png"
-          alt="Feathers Logo"
-        />
-        <h3 class="title">Chat</h3>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 push-4-tablet col-4-tablet">
-        <div class="row">
-          <div class="col-12">
-            <router-link
-              as="a"
-              :to="{ name: 'Login' }"
-              class="button button-primary block login"
-              >Login</router-link
-            >
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <router-link
-              as="a"
-              :to="{ name: 'Signup' }"
-              class="button button-primary block signup"
-              >Signup</router-link
-            >
-          </div>
+  <body class="bg-white">
+    <HomeNav />
+    <header>
+      <!-- Section Hero -->
+      <div
+        class="container mx-auto bg-gray-400 h-96 rounded-md flex items-center"
+      >
+        <div class="sm:ml-20 text-gray-50 text-center sm:text-left">
+          <h1 class="text-5xl font-bold mb-4">
+            Book saunas <br />
+            everywhere.
+          </h1>
+          <p class="text-lg inline-block sm:block">
+            The largest online community to rent saunas in Finland.
+          </p>
+          <button class="mt-8 px-4 py-2 bg-gray-600 rounded">
+            Browse saunas
+          </button>
         </div>
       </div>
-    </div>
-  </main>
+    </header>
+    <main class="py-16 container mx-auto px-6 md:px-0">
+      <section>
+        <h1 class="text-3xl font-bold text-gray-600 mb-10">
+          Explore exotic locations in Finland
+        </h1>
+        <div class="grid sm:grid-cols-3 gap-4 grid-cols-2">
+          <div>
+            <div class="bg-gray-300 h-44"></div>
+            <h3 class="text-lg font-semibold text-gray-500 mt-2">
+              Saunas in <span class="text-gray-700">Helsinki</span>
+            </h3>
+          </div>
+          <div>
+            <div class="bg-gray-300 h-44"></div>
+            <h3 class="text-lg font-semibold text-gray-500 mt-2">
+              Saunas in <span class="text-gray-700">Rovaniemi</span>
+            </h3>
+          </div>
+          <div>
+            <div class="bg-gray-300 h-44"></div>
+            <h3 class="text-lg font-semibold text-gray-500 mt-2">
+              Saunas in <span class="text-gray-700">Ruka</span>
+            </h3>
+          </div>
+        </div>
+        <hr class="w-40 my-14 border-4 rounded-md sm:mx-0 mx-auto" />
+      </section>
+      <section>
+        <h1 class="inline-block text-gray-600 font-bold text-3xl">
+          The holy sauna ritual <br />
+          (or how does Saunatime work).
+        </h1>
+
+        <div class="grid grid-cols-3 gap-4 mt-10">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-500 mt-2">
+              1. Browse and book
+            </h3>
+            <p class="text text-gray-400">
+              Start by searching for a location. Once you find a sauna you like,
+              simply check the availability, book it, and make a secure payment
+              right away.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-500 mt-2">
+              2. Have a great bath
+            </h3>
+            <p class="text text-gray-400">
+              Meet your host on the date you chose and enjoy the home sauna
+              experience. We'll handle the payment to the host after your
+              experience.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-500 mt-2">
+              3. Review the host
+            </h3>
+            <p class="text text-gray-400">
+              If you enjoyed the experience, let others know by giving a review
+              to your sauna host. This way others will know where to go.
+            </p>
+          </div>
+        </div>
+      </section>
+      <div class="mt-14">
+        <p>Ps. You can also become a Saunatime host in few clicks!</p>
+      </div>
+    </main>
+  </body>
 </template>
 
 <script>
+import HomeNav from '../components/HomeNav'
+
 export default {
-  name: 'Home'
+  components: {
+    HomeNav
+  }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.main.home {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
-.main.home img.logo {
-  width: 100%;
-  max-width: 400px;
-}
-
-.main.home h3.title {
-  color: #969696;
-  font-weight: 100;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-}
-
-.main.home .button.login,
-.main.home .button.signup {
-  padding-top: 1.2em;
-  padding-bottom: 1.2em;
-}
-
-.main.home .button.login {
-  background: none;
-  border: 2px solid #cfcfcf;
-  color: #999;
-}
-
-.main.home .button.login:hover,
-.main.home .button.login:focus {
-  background: none;
-  border: 2px solid #31d8a0;
-  color: #31d8a0;
-}
-</style>

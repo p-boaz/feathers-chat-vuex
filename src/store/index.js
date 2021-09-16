@@ -19,8 +19,23 @@ const servicePlugins = requireModule
   .map(modulePath => requireModule(modulePath).default)
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+    sideBarOpen: false
+  },
+  getters: {
+    sideBarOpen: state => {
+      return state.sideBarOpen
+    }
+  },
+  mutations: {
+    toggleSidebar(state) {
+      state.sideBarOpen = !state.sideBarOpen
+    }
+  },
+  actions: {
+    toggleSidebar(context) {
+      context.commit('toggleSidebar')
+    }
+  },
   plugins: [...servicePlugins, auth]
 })

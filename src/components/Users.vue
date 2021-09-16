@@ -1,32 +1,57 @@
 <template>
-  <aside class="sidebar col col-3 flex flex-column flex-space-between">
-    <header class="flex flex-row flex-center">
-      <h4 class="font-300 text-center">
-        <span v-cloak class="font-600 online-count">{{ users.length }}</span>
-        {{ userOrUsers }}
-      </h4>
-    </header>
-
-    <ul class="flex flex-column flex-1 list-unstyled user-list">
-      <li v-for="user in users" :key="user._id">
-        <a class="block relative" href="javascript://">
-          <img :src="user.avatar || dummyUser.avatar" alt="" class="avatar" />
-          <span class="absolute username">{{
-            user.email || dummyUser.email
-          }}</span>
-        </a>
-      </li>
-    </ul>
-
-    <footer class="flex flex-row flex-center">
-      <a
-        href="javascript://"
-        class="logout button button-primary"
-        @click="$emit('logout')"
-        >Sign Out</a
-      >
-    </footer>
-  </aside>
+  <section class="container mx-auto p-6 font-mono">
+    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr
+              class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+            >
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Age</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Date</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr v-for="user in users" :key="user._id" class="text-gray-700">
+              <td class="px-4 py-3 border">
+                <div class="flex items-center text-sm">
+                  <div class="relative w-8 h-8 mr-3 rounded-full md:block">
+                    <img
+                      class="object-cover w-full h-full rounded-full"
+                      :src="user.avatar || dummyUser.avatar"
+                      alt=""
+                      loading="lazy"
+                    />
+                    <div
+                      class="absolute inset-0 rounded-full shadow-inner"
+                      aria-hidden="true"
+                    ></div>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-black">
+                      {{ user.email || dummyUser.email }}
+                    </p>
+                    <p class="text-xs text-gray-600">Developer</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-3 text-ms font-semibold border">22</td>
+              <td class="px-4 py-3 text-xs border">
+                <span
+                  class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                >
+                  Acceptable
+                </span>
+              </td>
+              <td class="px-4 py-3 text-sm border">6/4/2000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -58,51 +83,3 @@ export default {
   }
 }
 </script>
-
-<style>
-aside.sidebar {
-  background: #f8f8f8;
-  max-width: 340px;
-  padding: 15px;
-  border-right: 1px solid #f1f1f1;
-}
-
-aside.sidebar .online-count {
-  color: #31d8a0;
-  margin-right: 5px;
-}
-
-aside.sidebar h4 {
-  margin: 0 0 20px 0;
-  color: #c3c3c3;
-}
-
-aside.sidebar .user-list {
-  overflow-y: scroll;
-}
-
-aside.sidebar li {
-  margin: 15px 0;
-}
-
-aside.sidebar li > a {
-  color: #555555;
-}
-
-aside.sidebar li > a:hover > span,
-aside.sidebar li > a:focus > span {
-  color: #31d8a0;
-}
-
-aside.sidebar img.avatar {
-  border-radius: 100%;
-  height: 45px;
-  width: 45px;
-  margin-right: 10px;
-}
-
-aside.sidebar .username {
-  position: absolute;
-  line-height: 45px;
-}
-</style>
